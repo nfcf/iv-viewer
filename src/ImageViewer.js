@@ -186,7 +186,7 @@ class ImageViewer {
     const imageSlider = new Slider(imageWrap, {
       isSliderEnabled: () => {
         const { loaded, zooming, zoomValue } = this._state;
-        return loaded && !zooming && zoomValue > 100;
+        return loaded && !zooming;
       },
       onStart: (e, position) => {
         const { snapSlider } = this._sliders;
@@ -293,10 +293,13 @@ class ImageViewer {
         const imageCurrentDim = this._getImageCurrentDim();
 
         // find handle left and top and make sure they lay between the snap image
-        const maxLeft = Math.max(snapImageDim.w - snapHandleDim.w, startHandleLeft);
-        const maxTop = Math.max(snapImageDim.h - snapHandleDim.h, startHandleTop);
-        const minLeft = Math.min(0, startHandleLeft);
-        const minTop = Math.min(0, startHandleTop);
+        var extraWidthMargin = snapHandleDim.w / 2;
+        var extraHeightMargin = snapHandleDim.h / 2;
+
+        var maxLeft = Math.max((snapImageDim.w + extraWidthMargin) - snapHandleDim.w, startHandleLeft);
+        var maxTop = Math.max((snapImageDim.h + extraHeightMargin) - snapHandleDim.h, startHandleTop);
+        var minLeft = Math.min(-extraWidthMargin, startHandleLeft);
+        var minTop = Math.min(-extraHeightMargin, startHandleTop);
 
         let left = clamp(startHandleLeft + position.dx, minLeft, maxLeft);
         let top = clamp(startHandleTop + position.dy, minTop, maxTop);
