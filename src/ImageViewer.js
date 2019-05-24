@@ -662,16 +662,16 @@ class ImageViewer {
     let imgHeight;
 
     const ratio = imageWidth / imageHeight;
-
     if (imageWidth > contWidth) {
-      imgWidth = (imageWidth > imageHeight && contHeight >= contWidth) || ratio * contHeight > contWidth
-        ? contWidth
-        : ratio * contHeight;
+      imgWidth = (imageWidth > imageHeight && contHeight >= contWidth) || ratio * contHeight > contWidth ? contWidth : ratio * contHeight;
     } else {
       imgWidth = imageWidth;
     }
-
     imgHeight = imgWidth / ratio;
+    if (imgHeight > contHeight) {
+      imgHeight = contHeight;
+      imgWidth = imgHeight * ratio;
+    }
 
     this._state.imageDim = {
       w: imgWidth,
