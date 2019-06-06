@@ -605,6 +605,7 @@ class ImageViewer {
       onImageLoad();
     } else {
       this._events.imageLoad = assignEvent(image, 'load', onImageLoad);
+      this._events.imageError = assignEvent(image, 'error', onImageLoad);
     }
   }
   _loadHighResImage (hiResImageSrc) {
@@ -672,6 +673,9 @@ class ImageViewer {
       imgHeight = contHeight;
       imgWidth = imgHeight * ratio;
     }
+
+    imgWidth = Math.max(imgWidth, 20);
+    imgHeight = Math.max(imgHeight, 20);
 
     this._state.imageDim = {
       w: imgWidth,
