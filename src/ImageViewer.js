@@ -100,7 +100,10 @@ class ImageViewer {
       hiResImageSrc = domElement.getAttribute('high-res-src') || domElement.getAttribute('data-high-res-src');
 
       // wrap the image with iv-container div
-      container = wrap(domElement, { className: 'iv-container iv-image-mode', style: { display: 'inline-block', overflow: 'hidden' } });
+      container = wrap(domElement, {
+        className: 'iv-container iv-image-mode',
+        style: 'display: inline-block; overflow: hidden',
+      });
 
       // hide the image and add iv-original-img class
       css(domElement, {
