@@ -1235,7 +1235,7 @@
           height: "".concat(snapHeight, "px")
         }); // calculate zoom slider area
 
-        this._state.zoomSliderLength = snapViewWidth - zoomHandle.offsetWidth;
+        this._state.zoomSliderLength = snapViewWidth - zoomHandle.offsetWidth - 34;
       }
     }, {
       key: "resetZoom",

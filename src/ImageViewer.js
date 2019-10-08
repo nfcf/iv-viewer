@@ -24,11 +24,11 @@ const imageViewHtml = `
     <div class="iv-snap-image-wrap">
       <div class="iv-snap-handle"></div>
     </div>
-    <div class="iv-zoom-minus noselect"></div>
+    <div class="iv-zoom-minus noselect">-</div>
     <div class="iv-zoom-slider">
       <div class="iv-zoom-handle"></div>
     </div>
-    <div class="iv-zoom-plus noselect"></div>
+    <div class="iv-zoom-plus noselect">+</div>
   </div>
   <div class="iv-image-view" >
     <div class="iv-image-wrap" ></div>
@@ -730,7 +730,7 @@ class ImageViewer {
     });
 
     // calculate zoom slider area
-    this._state.zoomSliderLength = snapViewWidth - zoomHandle.offsetWidth;
+    this._state.zoomSliderLength = snapViewWidth - zoomHandle.offsetWidth - 34;
   }
   resetZoom (animate = true) {
     const { zoomValue } = this._options;
