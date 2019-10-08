@@ -103,8 +103,30 @@
 .iv-snap-handle:active {
   cursor: grabbing;
 }
+.iv-zoom-minus,
+.iv-zoom-plus {
+  width: 16px;
+  box-sizing: content-box;
+  border: 1px solid #aaa;
+  border-top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  height: 14px;
+  position: absolute;
+  top: 150px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  line-height: 15px;
+  text-align: center;
+}
+.iv-zoom-minus {
+  left: -1px;
+}
+.iv-zoom-plus {
+  right: -1px;
+}
 .iv-zoom-slider {
-  width: 100%;
+  width: calc(100% - 32px);
   box-sizing: content-box;
   border: 1px solid #aaa;
   border-top: 0;
@@ -112,15 +134,16 @@
   height: 15px;
   position: absolute;
   top: 150px;
-  left: -1px;
+  left: 16px;
 }
 .iv-zoom-handle {
   width: 20px;
-  height: 15px;
+  height: 14px;
   background: white;
   position: absolute;
   cursor: pointer;
   cursor: grab;
+  border-radius: 6px;
 }
 .iv-zoom-handle:active {
   cursor: grabbing;
@@ -168,6 +191,17 @@
   height: 10em;
   border-radius: 50%;
 }
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
 @keyframes loading-icon {
   0% {
     transform: rotate(0deg);

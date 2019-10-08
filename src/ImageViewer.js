@@ -24,9 +24,11 @@ const imageViewHtml = `
     <div class="iv-snap-image-wrap">
       <div class="iv-snap-handle"></div>
     </div>
+    <div class="iv-zoom-minus noselect"></div>
     <div class="iv-zoom-slider">
       <div class="iv-zoom-handle"></div>
     </div>
+    <div class="iv-zoom-plus noselect"></div>
   </div>
   <div class="iv-image-view" >
     <div class="iv-image-wrap" ></div>
@@ -173,6 +175,8 @@ class ImageViewer {
       imageWrap: container.querySelector('.iv-image-wrap'),
       snapHandle: container.querySelector('.iv-snap-handle'),
       zoomHandle: container.querySelector('.iv-zoom-handle'),
+      minusHandle: container.querySelector('.iv-zoom-minus'),
+      plusHandle: container.querySelector('.iv-zoom-plus'),
     };
   }
 
@@ -328,7 +332,7 @@ class ImageViewer {
   }
 
   _initZoomSlider () {
-    const { snapView, zoomHandle } = this._elements;
+    const { snapView, zoomHandle, minusHandle, plusHandle } = this._elements;
 
     // zoom in zoom out using zoom handle
     const sliderElm = snapView.querySelector('.iv-zoom-slider');
@@ -365,6 +369,17 @@ class ImageViewer {
 
     zoomSlider.init();
     this._sliders.zoomSlider = zoomSlider;
+
+    this._events.onZoomMinusClick = assignEvent(minusHandle, 'click', () => {
+      const { zoomValue } = this._state;
+      const newZoomValue = zoomValue - ZOOM_CONSTANT;
+      this.zoom(newZoomValue);
+    });
+    this._events.onZoomPlusClick = assignEvent(plusHandle, 'click', () => {
+      const { zoomValue } = this._state;
+      const newZoomValue = zoomValue + ZOOM_CONSTANT;
+      this.zoom(newZoomValue);
+    });
   }
 
   _initEvents () {
